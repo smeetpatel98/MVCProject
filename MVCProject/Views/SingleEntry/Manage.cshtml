@@ -1,0 +1,37 @@
+﻿@using MVCProject.Controllers
+@model List<MVCProject.Models.CourseEntity>
+    <table style="width: 100%;" id="studenttbl" class="table table-striped dataTable no-footer">
+        <thead>
+            <tr style="background-color:#005cbf;font-style:inherit;color:aliceblue">
+                <th>
+                    Course Name
+                </th>
+                <th>
+                    CourseDepartment
+                </th>
+                <th>
+                    Edit
+                </th>
+                <th>
+                    Delete
+                </th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(Model => item.CourseName)
+                </td>
+                <td>
+                    @Html.DisplayFor(Model => item.CourseDept)
+                </td>
+                <td>
+                    @*@Html.ActionLink("edit")*@
+                </td>
+            </tr>
+        }
+
+    </table>
