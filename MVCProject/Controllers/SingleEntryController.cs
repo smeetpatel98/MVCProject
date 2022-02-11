@@ -12,6 +12,7 @@ namespace MVCProject.Controllers
     public class SingleEntryController : Controller
     {
         public object _context { get; private set; }
+        public string Message { get; private set; }
 
         // GET: SingleEntry
         LoginDBEntities db = new LoginDBEntities();
@@ -22,7 +23,7 @@ namespace MVCProject.Controllers
             var course = (from Course in db.Courses 
                           select new CourseEntity()     
                           {
-                              //modelname = object.databasename
+                              //modelname = databasename.parameters
                               CourseDept = Course.CourseDept,
                               CourseName = Course.CourseName
 
@@ -53,10 +54,14 @@ namespace MVCProject.Controllers
             }
             return RedirectToAction("Index");
         }
-        
-      
+        public void OnPostSubmit(string selectedDate)
+        {
+            this.Message = "Selected Date: " + selectedDate;
+        }
 
-       
+
+
+
 
 
         //[HttpPost]

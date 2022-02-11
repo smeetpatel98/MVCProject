@@ -11,6 +11,16 @@
   <EntityContainer Name="LoginDBEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Users" EntityType="Self.User" />
     <EntitySet Name="Courses" EntityType="LoginDBModel.Course" />
+    <EntitySet Name="Department_tbl" EntityType="LoginDBModel.Department_tbl" />
+    <EntitySet Name="UserDetails" EntityType="LoginDBModel.UserDetail" />
+    <AssociationSet Name="FK_Table_1_Table_" Association="LoginDBModel.FK_Table_1_Table_">
+      <End Role="UserDetail" EntitySet="UserDetails" />
+      <End Role="UserDetail1" EntitySet="UserDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserDetails_Department_tbl" Association="LoginDBModel.FK_UserDetails_Department_tbl">
+      <End Role="Department_tbl" EntitySet="Department_tbl" />
+      <End Role="UserDetail" EntitySet="UserDetails" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Course">
     <Key>
@@ -20,4 +30,50 @@
     <Property Name="CourseName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="CourseDept" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
+  <EntityType Name="Department_tbl">
+    <Key>
+      <PropertyRef Name="DeptID" />
+    </Key>
+    <Property Name="DeptID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Dept_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="UserDetails" Relationship="LoginDBModel.FK_UserDetails_Department_tbl" FromRole="Department_tbl" ToRole="UserDetail" />
+  </EntityType>
+  <EntityType Name="UserDetail">
+    <Key>
+      <PropertyRef Name="User_ID" />
+    </Key>
+    <Property Name="User_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="User_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Phone_Number" Type="Int32" />
+    <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="DOB" Type="DateTime" Precision="0" />
+    <Property Name="DeptID" Type="Int32" />
+    <NavigationProperty Name="Department_tbl" Relationship="LoginDBModel.FK_UserDetails_Department_tbl" FromRole="UserDetail" ToRole="Department_tbl" />
+  </EntityType>
+  <Association Name="FK_Table_1_Table_">
+    <End Type="LoginDBModel.UserDetail" Role="UserDetail" Multiplicity="1" />
+    <End Type="LoginDBModel.UserDetail" Role="UserDetail1" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="UserDetail">
+        <PropertyRef Name="User_ID" />
+      </Principal>
+      <Dependent Role="UserDetail1">
+        <PropertyRef Name="User_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserDetails_Department_tbl">
+    <End Type="LoginDBModel.Department_tbl" Role="Department_tbl" Multiplicity="0..1" />
+    <End Type="LoginDBModel.UserDetail" Role="UserDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department_tbl">
+        <PropertyRef Name="DeptID" />
+      </Principal>
+      <Dependent Role="UserDetail">
+        <PropertyRef Name="DeptID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

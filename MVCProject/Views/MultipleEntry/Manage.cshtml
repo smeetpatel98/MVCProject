@@ -1,0 +1,41 @@
+﻿@using MVCProject.Controllers
+@model List<MVCProject.Models.UserEntity>
+<table style="width: 100%;" id="studenttbl" class="table table-striped dataTable no-footer">
+    <thead>
+        <tr style="background-color:#005cbf; font-style:inherit; color:aliceblue">
+            <th> USER INFO</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td> Full Name</td>
+            <td> Email ID</td>
+            <td> Address</td>
+            <td> Gender </td>
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(Model => item.User_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(Model => item.Email_ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(Model => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(Model => item.Gender)
+                </td>
+                <td>
+                    @*@Html.ActionLink("edit")*@
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+

@@ -16,4 +16,5 @@ namespace MVCProject.Models
         public string CourseName { get; set; }
         public string CourseDept { get; set; }
     }
+    
 }

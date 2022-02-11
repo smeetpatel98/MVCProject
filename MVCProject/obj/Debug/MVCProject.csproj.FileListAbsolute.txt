@@ -1,5 +1,3 @@
-C:\Users\Smeet\source\repos\MVCProject\MVCProject\obj\Debug\MVCProject.csproj.AssemblyReference.cache
-C:\Users\Smeet\source\repos\MVCProject\MVCProject\obj\Debug\MVCProject.csproj.CoreCompileInputs.cache
 C:\Users\Smeet\source\repos\MVCProject\MVCProject\bin\MVCProject.dll.config
 C:\Users\Smeet\source\repos\MVCProject\MVCProject\bin\MVCProject.dll
 C:\Users\Smeet\source\repos\MVCProject\MVCProject\bin\MVCProject.pdb
@@ -78,6 +76,8 @@ C:\Users\Smeet\source\repos\MVCProject\MVCProject\bin\System.Web.WebPages.Razor.
 C:\Users\Smeet\source\repos\MVCProject\MVCProject\bin\Newtonsoft.Json.xml
 C:\Users\Smeet\source\repos\MVCProject\MVCProject\bin\Antlr3.Runtime.pdb
 C:\Users\Smeet\source\repos\MVCProject\MVCProject\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Smeet\source\repos\MVCProject\MVCProject\obj\Debug\MVCProject.csproj.AssemblyReference.cache
+C:\Users\Smeet\source\repos\MVCProject\MVCProject\obj\Debug\MVCProject.csproj.CoreCompileInputs.cache
 C:\Users\Smeet\source\repos\MVCProject\MVCProject\obj\Debug\MVCProject.csproj.CopyComplete
 C:\Users\Smeet\source\repos\MVCProject\MVCProject\obj\Debug\MVCProject.dll
 C:\Users\Smeet\source\repos\MVCProject\MVCProject\obj\Debug\MVCProject.pdb

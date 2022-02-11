@@ -7,6 +7,10 @@
       <Diagram DiagramId="18661742ac824786ac7acdb32f23a01f" Name="Diagram1">
         <EntityTypeShape EntityType="LoginDBModel.User" Width="2" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="LoginDBModel.Course" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="LoginDBModel.Department_tbl" Width="1.5" PointX="2.75" PointY="3.75" />
+        <EntityTypeShape EntityType="LoginDBModel.UserDetail" Width="1.5" PointX="0.75" PointY="3.75" />
+        <AssociationConnector Association="LoginDBModel.FK_Table_1_Table_" />
+        <AssociationConnector Association="LoginDBModel.FK_UserDetails_Department_tbl" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

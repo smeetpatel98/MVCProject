@@ -1,0 +1,89 @@
+﻿@model MVCProject.Models.UserEntity
+
+<style>
+    .btn1 {
+        color: #ffffff;
+        border-radius: 10px;
+        padding: 10px 15px;
+        background: linear-gradient(122.33deg, #68bed1 30.62%, #1e94e9 100%);
+        margin-top: 30px;
+        margin-bottom: 10px;
+        font-size: 16px;
+        transition: all 0.3s linear;
+    }
+
+        .btn1:hover {
+            transform: translateY(-2px);
+        }
+
+    .container {
+        display: inline-block;
+        border-radius: 15px;
+        border: 2px solid black;
+        height: 234px;
+        padding-top: 7px;
+        padding-left: 20px;
+    }
+</style>
+
+@using (Html.BeginForm("SaveUser", "MultipleEntry", FormMethod.Post))
+{
+    <div class="form-group">
+        <div class="col-md-12">
+            @Html.Label("Full Name", htmlAttributes: new { @class = "control-label" })<span style="color:red">*</span>
+            @Html.TextBoxFor(x => x.User_Name, new { @class = "form-control required", @alt = "Full Name", autocomplete = "off" })
+
+            @Html.Label("Address", htmlAttributes: new { @class = "control-label" })
+            @Html.TextBoxFor(x => x.Address, new { @class = "form-control required", @alt = "Address", autocomplete = "off" })
+
+            @Html.Label("Phone Number", htmlAttributes: new { @class = "control-label" })<span style="color:red">*</span>
+            @Html.TextBoxFor(x => x.Phone_Number, new { @class = "form-control required", @alt = "Phone Number", autocomplete = "off" })
+
+            @Html.Label("Email ID", htmlAttributes: new { @class = "control-label" })<span style="color:red">*</span>
+            @Html.TextBoxFor(x => x.Email_ID, new { @class = "form-control required", @alt = "Email ID", autocomplete = "off" })
+
+            @Html.Label("Gender:", htmlAttributes: new { @class = "control-label" })<span style="color:red">*</span>
+            <br>@Html.RadioButtonFor(x => x.Gender, "Male", true) Male
+            @Html.RadioButtonFor(x => x.Gender, "Female", false) Female
+            @Html.RadioButtonFor(x => x.Gender, "Others", false) Others
+            @Html.ValidationMessageFor(x => x.Gender)
+
+            <div class="col-md-6">
+                @Html.Label("Date of Birth", htmlAttributes: new { @class = "control-label" })<span style="color:red">*</span>
+                <div id="datepicker" class="input-group date" data-date-format="dd/mm/yyyy">
+                    @Html.TextBoxFor(x => x.DOB, null, new { @class = "form-control required", @alt = "Date of Birth", autocomplete = "off" })
+                     <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+
+                    @*@if (Model == null)
+                {
+                    @Html.TextBoxFor(x => x.DOB, null, new { @class = "form-control required", @alt = "Date of Birth", autocomplete = "off", @readonly = "readonly" })
+                }
+                else
+                {
+                    if (Model.DOB == null)
+                    {
+                        @Html.TextBoxFor(x => x.DOB, new { @class = "form-control", autocomplete = "off", @readonly = "readonly", @alt = "Date of Birth" })
+                    }
+                    else
+                    {
+                        @Html.TextBoxFor(x => x.DOB, Model.DOB.Value.ToString("dd/MM/yyyy"), new { @class = "form-control required", autocomplete = "off", @readonly = "readonly", @alt = "Date of Birth" })
+                    }
+                }*@
+                   
+              
+                </div>
+            </div>
+        </div>
+
+
+
+            @Html.HiddenFor(x => x.User_ID)
+
+        </div>
+        
+        <div>
+            <input class="btn1" type="submit" value="Save">
+            <input class="btn1" type="reset" value="Reset">
+        </div>
+   
+}

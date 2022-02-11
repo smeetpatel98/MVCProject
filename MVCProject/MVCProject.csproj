@@ -130,6 +130,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MultipleEntryController.cs" />
     <Compile Include="Controllers\SingleEntryController.cs" />
     <Compile Include="DAL\Modelaccess.cs" />
     <Compile Include="DAL\SingleEntryRepo.cs" />
@@ -141,6 +142,9 @@
       <DependentUpon>LoginDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CourseMaintenance.cs" />
+    <Compile Include="Models\Department_tbl.cs">
+      <DependentUpon>LoginDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\LoginDataModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -159,6 +163,10 @@
     <Compile Include="Models\User.cs">
       <DependentUpon>LoginDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UserDetail.cs">
+      <DependentUpon>LoginDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserDetailsMaintenance.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -2188,6 +2196,9 @@
     <Content Include="Views\SingleEntry\Index.cshtml" />
     <Content Include="Views\SingleEntry\Create.cshtml" />
     <Content Include="Views\SingleEntry\Manage.cshtml" />
+    <Content Include="Views\MultipleEntry\Index.cshtml" />
+    <Content Include="Views\MultipleEntry\Create.cshtml" />
+    <Content Include="Views\MultipleEntry\Manage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

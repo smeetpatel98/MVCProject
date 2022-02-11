@@ -8,6 +8,13 @@
     <Property Name="CourseName" Type="varchar" MaxLength="50" />
     <Property Name="CourseDept" Type="varchar" MaxLength="50" />
   </EntityType>
+  <EntityType Name="Department_tbl">
+    <Key>
+      <PropertyRef Name="DeptID" />
+    </Key>
+    <Property Name="DeptID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Dept_Name" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
   <EntityType Name="User">
     <Key>
       <PropertyRef Name="UserID" />
@@ -16,8 +23,39 @@
     <Property Name="UserName" Type="varchar" MaxLength="50" />
     <Property Name="Password" Type="varchar" MaxLength="100" />
   </EntityType>
+  <EntityType Name="UserDetails">
+    <Key>
+      <PropertyRef Name="User_ID" />
+    </Key>
+    <Property Name="User_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="User_Name" Type="varchar" MaxLength="50" />
+    <Property Name="Email_ID" Type="varchar" MaxLength="50" />
+    <Property Name="Phone_Number" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="Address" Type="varchar" MaxLength="100" />
+    <Property Name="Gender" Type="varchar" MaxLength="10" />
+    <Property Name="DOB" Type="date" />
+    <Property Name="DeptID" Type="int" />
+  </EntityType>
+  <Association Name="FK_UserDetails_Department_tbl">
+    <End Role="Department_tbl" Type="Self.Department_tbl" Multiplicity="0..1" />
+    <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department_tbl">
+        <PropertyRef Name="DeptID" />
+      </Principal>
+      <Dependent Role="UserDetails">
+        <PropertyRef Name="DeptID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="LoginDBModelStoreContainer">
     <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Department_tbl" EntityType="Self.Department_tbl" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserDetails" EntityType="Self.UserDetails" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_UserDetails_Department_tbl" Association="Self.FK_UserDetails_Department_tbl">
+      <End Role="Department_tbl" EntitySet="Department_tbl" />
+      <End Role="UserDetails" EntitySet="UserDetails" />
+    </AssociationSet>
   </EntityContainer>
 </Schema>
