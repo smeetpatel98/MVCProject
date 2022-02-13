@@ -59,7 +59,7 @@ namespace MVCProject.Controllers
         }
         [DataObjectMethod(DataObjectMethodType.Delete)]
 
-        public ActionResult DeleteCourse(Course course)
+        public ActionResult DeleteCourse(int CourseID)
         {
             //Query syntax
 
@@ -68,15 +68,13 @@ namespace MVCProject.Controllers
             //                  select c).FirstOrDefault();
             try
             {
-                
-                    var course1 = db.Courses.Where(x => x.CourseID == x.CourseID).FirstOrDefault();
-                    if (course1 != null)
-                    {
 
-                        db.Courses.Remove(course1);
-                        db.SaveChanges();
+                //var course1 = db.Courses.Where(x => x.CourseID == x.CourseID).FirstOrDefault();
+                var delete = db.Courses.Where(x => x.CourseID == CourseID).First();
+                      db.Courses.Remove(delete);
+                      db.SaveChanges();
                         //return course1;
-                    }
+                   
                 
             }
             catch (Exception ex)
@@ -87,14 +85,19 @@ namespace MVCProject.Controllers
            
             return RedirectToAction("Index");
         }
-        public void OnPostSubmit(string selectedDate)
+        public ActionResult Edit(Course course)
         {
-            this.Message = "Selected Date: " + selectedDate;
+            if (course != null)
+            {
+                return View(course);
+            }
+            else
+            {
+                return View("Index");
+            }
+          
+            
         }
-
-
-
-
 
 
         //[HttpPost]

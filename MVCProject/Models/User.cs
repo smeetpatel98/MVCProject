@@ -17,8 +17,7 @@ namespace MVCProject.Models
     public partial class User
     {
         public int UserID { get; set; }
-        [DisplayName("User Name")]
-        [Required(ErrorMessage = "username is required")]
+        [Required]
         public string UserName { get; set; }
         [DataType(DataType.Password)]
         [Required(ErrorMessage = "password is required")]

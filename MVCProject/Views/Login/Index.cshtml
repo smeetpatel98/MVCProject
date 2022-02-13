@@ -13,7 +13,11 @@
 
     <link href="~/css/login.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
-
+    <style>
+        .error{
+            color:red;
+        }
+    </style>
 </head>
 <!-- icons  -->
 @*<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">*@
@@ -34,6 +38,7 @@
                 <div class="input-box">
                     <span class="label">UserName</span>
                     <div class=" flex-r input">
+                        @Html.ValidationMessageFor(Model =>Model.UserName, "" , new { @class="error"})
                         @Html.EditorFor(Model => Model.UserName)
                         <i class="fas fa-at"></i>
                     </div>
@@ -42,6 +47,7 @@
                 <div class="input-box">
                     <span class="label">Password</span>
                     <div class="flex-r input">
+                        @Html.ValidationMessageFor(Model => Model.Password, "", new { @class = "error" })
                         @Html.EditorFor(Model => Model.Password)
                         <i class="fas fa-lock"></i>
                     </div>

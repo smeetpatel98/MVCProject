@@ -80,3 +80,4 @@ C:\Users\Smeet\source\repos\MVCProject\MVCProject\obj\Debug\MVCProject.csproj.Co
 C:\Users\Smeet\source\repos\MVCProject\MVCProject\obj\Debug\MVCProject.csproj.CopyComplete
 C:\Users\Smeet\source\repos\MVCProject\MVCProject\obj\Debug\MVCProject.dll
 C:\Users\Smeet\source\repos\MVCProject\MVCProject\obj\Debug\MVCProject.pdb
+C:\Users\Smeet\source\repos\MVCProject\MVCProject\obj\Debug\MVCProject.csproj.AssemblyReference.cache
