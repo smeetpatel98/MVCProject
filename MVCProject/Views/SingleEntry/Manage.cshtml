@@ -29,7 +29,16 @@
                     @Html.DisplayFor(Model => item.CourseDept)
                 </td>
                 <td>
-                    @*@Html.ActionLink("edit")*@
+                    @Html.ActionLink("Edit","Edit", new { id=item.CourseID})
+                    
+                </td>
+                <td>
+                    @using (Html.BeginForm("DeleteCourse", "SingleEntry", new { id = item.CourseID }))
+                    {
+
+                        <input type="submit" value="Delete" />
+
+                    }
                 </td>
             </tr>
         }

@@ -1,6 +1,8 @@
 ﻿using MVCProject.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -24,6 +26,7 @@ namespace MVCProject.Controllers
                           select new CourseEntity()     
                           {
                               //modelname = databasename.parameters
+                              CourseID= Course.CourseID,
                               CourseDept = Course.CourseDept,
                               CourseName = Course.CourseName
 
@@ -52,6 +55,36 @@ namespace MVCProject.Controllers
             {
                 throw ex;
             }
+            return RedirectToAction("Index");
+        }
+        [DataObjectMethod(DataObjectMethodType.Delete)]
+
+        public ActionResult DeleteCourse(Course course)
+        {
+            //Query syntax
+
+            //Course course1 = (from c in db.Courses
+            //                  where c.CourseID == course.CourseID
+            //                  select c).FirstOrDefault();
+            try
+            {
+                
+                    var course1 = db.Courses.Where(x => x.CourseID == x.CourseID).FirstOrDefault();
+                    if (course1 != null)
+                    {
+
+                        db.Courses.Remove(course1);
+                        db.SaveChanges();
+                        //return course1;
+                    }
+                
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+       
+           
             return RedirectToAction("Index");
         }
         public void OnPostSubmit(string selectedDate)

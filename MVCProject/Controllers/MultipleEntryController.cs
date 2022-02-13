@@ -33,8 +33,8 @@ namespace MVCProject.Controllers
             catch (Exception ex)
             {
                 throw ex;
-            }           
-           
+            }
+
         }
 
         [HttpPost]
@@ -63,5 +63,22 @@ namespace MVCProject.Controllers
             return RedirectToAction("Index");
         }
 
+        //public ActionResult DeleteUser(UserDetail user)
+        //{
+        //    //Query syntax
+
+        //    //Course course1 = (from c in db.Courses
+        //    //                  where c.CourseID == course.CourseID
+        //    //                  select c).FirstOrDefault();
+
+        //    var user1 = ;
+        //    if (course1 != null)
+        //    {
+        //        db.Courses.Remove(course1);
+        //        db.SaveChanges();
+        //        //return course1;
+        //    }
+        //    return RedirectToAction("Index");
+        //}
     }
 }
