@@ -65,19 +65,19 @@ namespace MVCProject.Controllers
 
         public ActionResult DeleteUser(int User_ID)
         {
-            //Query syntax
-
-            //Course course1 = (from c in db.Courses
-            //                  where c.CourseID == course.CourseID
-            //                  select c).FirstOrDefault();
-            
+            try { 
                 var delete = db.UserDetails.Where(x => x.User_ID == User_ID).First();
 
                 db.UserDetails.Remove(delete);
                 db.SaveChanges();
                 //return course1;
-            
-          
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+
             return RedirectToAction("Index");
         }
     }

@@ -128,6 +128,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CascadingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MultipleEntryController.cs" />
@@ -137,6 +138,13 @@
     <Compile Include="Data\MVCProjectContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CascadingModel.cs" />
+    <Compile Include="Models\city.cs">
+      <DependentUpon>LoginDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\country.cs">
+      <DependentUpon>LoginDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Course.cs">
       <DependentUpon>LoginDataModel.tt</DependentUpon>
@@ -159,6 +167,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>LoginDataModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\state.cs">
+      <DependentUpon>LoginDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
       <DependentUpon>LoginDataModel.tt</DependentUpon>
@@ -2199,6 +2210,7 @@
     <Content Include="Views\MultipleEntry\Index.cshtml" />
     <Content Include="Views\MultipleEntry\Create.cshtml" />
     <Content Include="Views\MultipleEntry\Manage.cshtml" />
+    <Content Include="Views\Cascading\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

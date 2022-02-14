@@ -12,10 +12,12 @@ namespace MVCProject.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class city
     {
-        public int UserID { get; set; }
-        public string UserName { get; set; }
-        public string Password { get; set; }
+        public int Cityid { get; set; }
+        public string Cityname { get; set; }
+        public Nullable<int> SId { get; set; }
+    
+        public virtual state state { get; set; }
     }
 }

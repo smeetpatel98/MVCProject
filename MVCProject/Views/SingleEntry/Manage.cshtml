@@ -29,16 +29,10 @@
                     @Html.DisplayFor(Model => item.CourseDept)
                 </td>
                 <td>
-                    @*@Html.ActionLink("Edit","Edit", new { id=item.CourseID})*@
-                    <a href="@Url.Action("Edit", new { item.CourseID, item.CourseName, item.CourseDept})" class="btn btn-success">Edit</a>
+                   
+                    <a href="@Url.Action("Edit", new { item.CourseID})" class="btn btn-success">Edit</a>
                 </td>
                 <td>
-                    @*@using (Html.BeginForm("DeleteCourse", "SingleEntry", new { id = item.CourseID }))
-                    {
-
-                        <input type="submit" value="Delete" />
-
-                    }*@
                     <a href="@Url.Action("DeleteCourse", new { item.CourseID})"class="btn btn-danger">Delete</a>
                 </td>
             </tr>

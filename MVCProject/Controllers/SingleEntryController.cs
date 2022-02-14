@@ -61,11 +61,6 @@ namespace MVCProject.Controllers
 
         public ActionResult DeleteCourse(int CourseID)
         {
-            //Query syntax
-
-            //Course course1 = (from c in db.Courses
-            //                  where c.CourseID == course.CourseID
-            //                  select c).FirstOrDefault();
             try
             {
 
@@ -73,7 +68,7 @@ namespace MVCProject.Controllers
                 var delete = db.Courses.Where(x => x.CourseID == CourseID).First();
                       db.Courses.Remove(delete);
                       db.SaveChanges();
-                        //return course1;
+                     
                    
                 
             }
@@ -85,47 +80,35 @@ namespace MVCProject.Controllers
            
             return RedirectToAction("Index");
         }
-        public ActionResult Edit(Course course)
+
+        [HttpPost]
+        public ActionResult Edit(int CourseID)
         {
-            if (course != null)
-            {
-                return View(course);
-            }
-            else
-            {
-                return View("Index");
-            }
-          
-            
+            var data = db.Courses.Where(x => x.CourseID == CourseID).FirstOrDefault();
+            //{
+            //    CourseID = x.CourseID,
+            //    CourseName = x.CourseName,
+            //    CourseDept = x.CourseDept
+
+            //}).SingleOrDefault();
+            return View("Index",data);  
         }
-
-
         //[HttpPost]
-        //public ActionResult New()
+        //public ActionResult Edit(Course edit1)
         //{
-        //    using (NorthwindEntities db = new NorthwindEntities())
+        //    var data = db.Courses.Where(x => x.CourseID == edit1.CourseID).FirstOrDefault();
+        //    if (data != null)
         //    {
-        //        CustomersViewModel model = new CustomersViewModel();
-        //        model.Customers = db.Customers.OrderBy(
-        //                       m => m.CustomerID).Take(5).ToList();
-        //        model.SelectedCustomer = null;
-        //        model.DisplayMode = "WriteOnly";
-        //        return View("Index", model);
+        //        data.CourseID = edit1.CourseID;
+        //        data.CourseName = edit1.CourseName;
+        //        data.CourseDept = edit1.CourseDept;
+        //        db.SaveChanges();
         //    }
+        //    return RedirectToAction("Index");
         //}
 
-        //[HttpPost]
-        //public ActionResult New(MVCProject.Models.Course course)
-        //{
-        //    using (LoginDBEntities db = new LoginDBEntities())
-        //    {
 
-        //        Course model = new Course();
-        //        model.CourseName = db.Courses.OrderBy(x => x.CourseName).Take(2).ToList();
-
-        //        return View();
-        //    }
-        //}
+        
 
 
 

@@ -11,6 +11,11 @@
         <EntityTypeShape EntityType="LoginDBModel.UserDetail" Width="1.5" PointX="0.75" PointY="3.75" />
         <AssociationConnector Association="LoginDBModel.FK_Table_1_Table_" />
         <AssociationConnector Association="LoginDBModel.FK_UserDetails_Department_tbl" />
+        <EntityTypeShape EntityType="LoginDBModel.city" Width="1.5" PointX="7" PointY="7.25" />
+        <EntityTypeShape EntityType="LoginDBModel.country" Width="1.5" PointX="3" PointY="7.25" />
+        <EntityTypeShape EntityType="LoginDBModel.state" Width="1.5" PointX="5" PointY="7.25" />
+        <AssociationConnector Association="LoginDBModel.FK_city_state" />
+        <AssociationConnector Association="LoginDBModel.FK_state_country" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
