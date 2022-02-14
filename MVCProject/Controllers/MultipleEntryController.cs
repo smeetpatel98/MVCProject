@@ -63,22 +63,22 @@ namespace MVCProject.Controllers
             return RedirectToAction("Index");
         }
 
-        //public ActionResult DeleteUser(UserDetail user)
-        //{
-        //    //Query syntax
+        public ActionResult DeleteUser(int User_ID)
+        {
+            //Query syntax
 
-        //    //Course course1 = (from c in db.Courses
-        //    //                  where c.CourseID == course.CourseID
-        //    //                  select c).FirstOrDefault();
+            //Course course1 = (from c in db.Courses
+            //                  where c.CourseID == course.CourseID
+            //                  select c).FirstOrDefault();
+            
+                var delete = db.UserDetails.Where(x => x.User_ID == User_ID).First();
 
-        //    var user1 = ;
-        //    if (course1 != null)
-        //    {
-        //        db.Courses.Remove(course1);
-        //        db.SaveChanges();
-        //        //return course1;
-        //    }
-        //    return RedirectToAction("Index");
-        //}
+                db.UserDetails.Remove(delete);
+                db.SaveChanges();
+                //return course1;
+            
+          
+            return RedirectToAction("Index");
+        }
     }
 }

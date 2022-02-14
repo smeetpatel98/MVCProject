@@ -44,14 +44,15 @@
                     @Html.ActionLink("Edit","Edit", new { id=item.User_ID})
                     
                 </td>
-                <td>
-                    @using (Html.BeginForm("DeleteUser", "MultipleEntry", new { id = item.User_ID }))
-                    {
+                    <td>
+                        @*@using (Html.BeginForm("DeleteUser", "MultipleEntry", new { id = item.User_ID }))
+        {
 
-                        <input type="submit" value="Delete" />
+            <input type="submit" value="Delete" />
 
-                    }
-                </td>
+        }*@
+                        <a href="@Url.Action("DeleteUser", new { item.User_ID})" class="btn btn-danger">Delete</a>
+                    </td>
                 </tr>
             }
     </tbody>
