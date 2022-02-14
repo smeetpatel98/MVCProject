@@ -41,5 +41,31 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="cities">
+      <EntityTypeMapping TypeName="LoginDBModel.city">
+        <MappingFragment StoreEntitySet="city">
+          <ScalarProperty Name="SId" ColumnName="SId" />
+          <ScalarProperty Name="Cityname" ColumnName="Cityname" />
+          <ScalarProperty Name="Cityid" ColumnName="Cityid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="countries">
+      <EntityTypeMapping TypeName="LoginDBModel.country">
+        <MappingFragment StoreEntitySet="country">
+          <ScalarProperty Name="Cname" ColumnName="Cname" />
+          <ScalarProperty Name="CId" ColumnName="CId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="states">
+      <EntityTypeMapping TypeName="LoginDBModel.state">
+        <MappingFragment StoreEntitySet="state">
+          <ScalarProperty Name="CId" ColumnName="CId" />
+          <ScalarProperty Name="Sname" ColumnName="Sname" />
+          <ScalarProperty Name="SId" ColumnName="SId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

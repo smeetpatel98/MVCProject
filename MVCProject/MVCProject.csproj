@@ -2211,6 +2211,8 @@
     <Content Include="Views\MultipleEntry\Create.cshtml" />
     <Content Include="Views\MultipleEntry\Manage.cshtml" />
     <Content Include="Views\Cascading\Index.cshtml" />
+    <Content Include="Views\Cascading\DisplayStates.cshtml" />
+    <Content Include="Views\Cascading\DisplayCities.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

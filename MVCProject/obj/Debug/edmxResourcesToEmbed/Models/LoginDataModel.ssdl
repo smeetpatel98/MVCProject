@@ -1,5 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="LoginDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="city">
+    <Key>
+      <PropertyRef Name="Cityid" />
+    </Key>
+    <Property Name="Cityid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Cityname" Type="varchar" MaxLength="50" />
+    <Property Name="SId" Type="int" />
+  </EntityType>
+  <EntityType Name="country">
+    <Key>
+      <PropertyRef Name="CId" />
+    </Key>
+    <Property Name="CId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Cname" Type="varchar" MaxLength="50" />
+  </EntityType>
   <EntityType Name="Course">
     <Key>
       <PropertyRef Name="CourseID" />
@@ -14,6 +29,14 @@
     </Key>
     <Property Name="DeptID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Dept_Name" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="state">
+    <Key>
+      <PropertyRef Name="SId" />
+    </Key>
+    <Property Name="SId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Sname" Type="varchar" MaxLength="50" />
+    <Property Name="CId" Type="int" />
   </EntityType>
   <EntityType Name="User">
     <Key>
@@ -36,6 +59,30 @@
     <Property Name="DOB" Type="date" />
     <Property Name="DeptID" Type="int" />
   </EntityType>
+  <Association Name="FK_city_state">
+    <End Role="state" Type="Self.state" Multiplicity="0..1" />
+    <End Role="city" Type="Self.city" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="state">
+        <PropertyRef Name="SId" />
+      </Principal>
+      <Dependent Role="city">
+        <PropertyRef Name="SId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_state_country">
+    <End Role="country" Type="Self.country" Multiplicity="0..1" />
+    <End Role="state" Type="Self.state" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="country">
+        <PropertyRef Name="CId" />
+      </Principal>
+      <Dependent Role="state">
+        <PropertyRef Name="CId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_UserDetails_Department_tbl">
     <End Role="Department_tbl" Type="Self.Department_tbl" Multiplicity="0..1" />
     <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="*" />
@@ -49,10 +96,21 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="LoginDBModelStoreContainer">
+    <EntitySet Name="city" EntityType="Self.city" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="country" EntityType="Self.country" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Department_tbl" EntityType="Self.Department_tbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="state" EntityType="Self.state" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserDetails" EntityType="Self.UserDetails" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_city_state" Association="Self.FK_city_state">
+      <End Role="state" EntitySet="state" />
+      <End Role="city" EntitySet="city" />
+    </AssociationSet>
+    <AssociationSet Name="FK_state_country" Association="Self.FK_state_country">
+      <End Role="country" EntitySet="country" />
+      <End Role="state" EntitySet="state" />
+    </AssociationSet>
     <AssociationSet Name="FK_UserDetails_Department_tbl" Association="Self.FK_UserDetails_Department_tbl">
       <End Role="Department_tbl" EntitySet="Department_tbl" />
       <End Role="UserDetails" EntitySet="UserDetails" />

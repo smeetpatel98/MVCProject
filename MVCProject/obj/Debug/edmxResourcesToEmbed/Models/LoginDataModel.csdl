@@ -21,6 +21,17 @@
       <End Role="Department_tbl" EntitySet="Department_tbl" />
       <End Role="UserDetail" EntitySet="UserDetails" />
     </AssociationSet>
+    <EntitySet Name="cities" EntityType="LoginDBModel.city" />
+    <EntitySet Name="countries" EntityType="LoginDBModel.country" />
+    <EntitySet Name="states" EntityType="LoginDBModel.state" />
+    <AssociationSet Name="FK_city_state" Association="LoginDBModel.FK_city_state">
+      <End Role="state" EntitySet="states" />
+      <End Role="city" EntitySet="cities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_state_country" Association="LoginDBModel.FK_state_country">
+      <End Role="country" EntitySet="countries" />
+      <End Role="state" EntitySet="states" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Course">
     <Key>
@@ -73,6 +84,57 @@
       </Principal>
       <Dependent Role="UserDetail">
         <PropertyRef Name="DeptID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="city">
+    <Key>
+      <PropertyRef Name="Cityid" />
+    </Key>
+    <Property Name="Cityid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Cityname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SId" Type="Int32" />
+    <NavigationProperty Name="state" Relationship="LoginDBModel.FK_city_state" FromRole="city" ToRole="state" />
+  </EntityType>
+  <EntityType Name="country">
+    <Key>
+      <PropertyRef Name="CId" />
+    </Key>
+    <Property Name="CId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Cname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="states" Relationship="LoginDBModel.FK_state_country" FromRole="country" ToRole="state" />
+  </EntityType>
+  <EntityType Name="state">
+    <Key>
+      <PropertyRef Name="SId" />
+    </Key>
+    <Property Name="SId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Sname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CId" Type="Int32" />
+    <NavigationProperty Name="cities" Relationship="LoginDBModel.FK_city_state" FromRole="state" ToRole="city" />
+    <NavigationProperty Name="country" Relationship="LoginDBModel.FK_state_country" FromRole="state" ToRole="country" />
+  </EntityType>
+  <Association Name="FK_city_state">
+    <End Type="LoginDBModel.state" Role="state" Multiplicity="0..1" />
+    <End Type="LoginDBModel.city" Role="city" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="state">
+        <PropertyRef Name="SId" />
+      </Principal>
+      <Dependent Role="city">
+        <PropertyRef Name="SId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_state_country">
+    <End Type="LoginDBModel.country" Role="country" Multiplicity="0..1" />
+    <End Type="LoginDBModel.state" Role="state" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="country">
+        <PropertyRef Name="CId" />
+      </Principal>
+      <Dependent Role="state">
+        <PropertyRef Name="CId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
