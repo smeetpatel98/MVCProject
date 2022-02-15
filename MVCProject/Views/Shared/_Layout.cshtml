@@ -224,7 +224,7 @@
 
                                 <i class="nav-icon fas fa-user"></i>
                                 <p>
-                                    
+
                                     <span class="right badge badge-danger">New</span>
                                 </p>
                             </a>
@@ -252,12 +252,12 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                        <a href="@Url.Action("Index","Cascading")" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>CascadingDropDowm</p>
-                                        </a>
-                                    </li>
-                                    @*<li class="nav-item">
+                                    <a href="@Url.Action("Index","Cascading")" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>CascadingDropDowm</p>
+                                    </a>
+                                </li>
+                                @*<li class="nav-item">
                                         <a href="pages/layout/fixed-sidebar.html" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Fixed Sidebar</p>
@@ -886,6 +886,7 @@
     <a href="~/Views/Shared/_Layout.cshtml">~/Views/Shared/_Layout.cshtml</a>
     <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
     <script src="~/Scripts/jquery.validate.js"></script>
+    @RenderSection("scripts", required: false)
 </body>
 </html>
 

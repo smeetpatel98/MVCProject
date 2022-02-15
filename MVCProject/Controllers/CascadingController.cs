@@ -17,22 +17,25 @@ namespace MVCProject.Controllers
 
             return View();
         }
-
         public List<country> GetCountryList()
         {
             List<country> countries = db.countries.ToList();
             return countries;
         }
-        public ActionResult GetSateList(int CId)
+        [HttpPost]
+        public ActionResult GetStateList(int CId)
         {
-            List<state> states = db.states.Where(x => x.CId == CId).ToList();
-            ViewBag.Slist = new SelectList(states, "SId", "Sname");
-            return PartialView("DisplayStates");
+            List<state> statelist = db.states.Where(x => x.CId == CId).ToList();
+            ViewBag.StateOptions = new SelectList(statelist, "SId", "Sname");
+
+            return PartialView("DisplayState");
         }
+
+        [HttpPost]
         public ActionResult GetCityList(int SId)
         {
-            List<city> cities = db.cities.Where(x => x.SId == SId).ToList();
-            ViewBag.Citylist = new SelectList(cities, "Cityid", "Cityname");
+            List<city> citylist = db.cities.Where(x => x.SId == SId).ToList();
+            ViewBag.cityoption = new SelectList(citylist, "Cityid", "Cityname");
             return PartialView("DisplayCities");
         }
     }

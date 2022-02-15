@@ -91,24 +91,24 @@ namespace MVCProject.Controllers
             //    CourseDept = x.CourseDept
 
             //}).SingleOrDefault();
-            return View("Index",data);  
+            return View("Index");  
         }
-        //[HttpPost]
-        //public ActionResult Edit(Course edit1)
-        //{
-        //    var data = db.Courses.Where(x => x.CourseID == edit1.CourseID).FirstOrDefault();
-        //    if (data != null)
-        //    {
-        //        data.CourseID = edit1.CourseID;
-        //        data.CourseName = edit1.CourseName;
-        //        data.CourseDept = edit1.CourseDept;
-        //        db.SaveChanges();
-        //    }
-        //    return RedirectToAction("Index");
-        //}
+       
+        public ActionResult Editdata(Course edit1)
+        {
+            var data = db.Courses.Where(x => x.CourseID == edit1.CourseID).FirstOrDefault();
+            if (data != null)
+            {
+                data.CourseID = edit1.CourseID;
+                data.CourseName = edit1.CourseName;
+                data.CourseDept = edit1.CourseDept;
+                db.SaveChanges();
+            }
+            return RedirectToAction("Index",data);
+        }
 
 
-        
+
 
 
 

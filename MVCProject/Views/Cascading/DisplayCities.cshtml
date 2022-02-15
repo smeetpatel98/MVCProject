@@ -1,9 +1,13 @@
 ﻿@model MVCProject.Models.city
 
+
+
+
+
 <option value="">--Select City--</option>
-@if (ViewBag.Citylist != null)
+@if (ViewBag.cityoption != null)
 {
-    foreach (var item in ViewBag.Citylist)
+    foreach (var item in ViewBag.cityoption)
     {
         <option value="@item.Value">@item.Text</option>
     }

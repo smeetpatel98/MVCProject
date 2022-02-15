@@ -48,7 +48,7 @@
                     <span class="label">Password</span>
                     <div class="flex-r input">
                         @Html.ValidationMessageFor(Model => Model.Password, "", new { @class = "error" })
-                        @Html.EditorFor(Model => Model.Password)
+                        @Html.PasswordFor(Model => Model.Password)
                         <i class="fas fa-lock"></i>
                     </div>
                 </div>

@@ -4,48 +4,76 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>CascadingDrop</h2>
-@if (ViewBag.CountryList != null)
-{
-    @Html.DropDownListFor(x => x.CId, ViewBag.CountryList as SelectList, "--SelectList--", new { @class = "form-control" })
+<h3>CascadingDrop</h3>
+<div class="from-group">
+    <div class="form-group">
+        @if (ViewBag.CountryList != null)
+        {
+            @Html.DropDownListFor(x => x.CId, ViewBag.CountryList as SelectList, "--Select Country--",htmlAttributes: new { @class = "form-control", @*onchange = "GetState()"*@ })
+        }
+    </div>
+    <div class="form-group">
+
+        @Html.DropDownListFor(x => x.SId, new SelectList(" "), "--Select States--", htmlAttributes: new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.DropDownListFor(x => x.Cityid, new SelectList(" "), "--Select City--", new { @class = "form-control" })
+    </div>
+</div>
+
+@section scripts{
+    
+    <script>
+
+        $(document).ready(function () {
+            $("#CId").change(function () {
+                debugger
+                var CId = $(this).val();
+                $.ajax({
+                    type: "Post",
+                    url: ""+GetSiteURL()+"Cascading/GetStateList?CId=" + CId,
+                    contentType:"html",
+                    success: function (data) {
+                        debugger
+                        $("#SId").empty();
+                        $("#SId").append(data);
+                    }
+                })
+            })
+        })
+        $(document).ready(function () {
+            $("#SId").change(function () {
+                debugger
+                var SId = $(this).val();
+                $.ajax({
+                    type: "Post",
+                    url: ""+GetSiteURL()+"Cascading/GetCityList?SId=" + SId,
+                    contentType: "html",
+                    success: function (data) {
+                        debugger
+                        $("#Cityid").empty();
+                        $("#Cityid").append(data);
+                    }
+                })
+            })
+        })
+
+
+
+        function GetSiteURL() {
+
+            var str = window.location.href;
+            var res = str.split("/");
+            var URL = '';
+            if (res[2].toLowerCase() === 'localhost'.toLowerCase() || res[2].toLowerCase() === '127.0.0.1'.toLowerCase()) {
+                URL = window.location.protocol + "//" + res[2].toLowerCase() + "/" + res[3].toLowerCase();
+            }
+            else {
+                URL = window.location.protocol + "//" + res[2].toLowerCase() + "/";
+            }
+            SiteURL = URL;
+            return URL;
+        }
+
+    </script>
 }
-@Html.DropDownListFor(x => x.SId, new SelectList(""), "--Select States--", new { @class = "form-control" })
-@Html.DropDownListFor(x => x.Cityid, new SelectList(""), "--Select City--", new { @class = "form-control" })
-<script src="~/Scripts/jquery-3.4.1.min.js"></script>
-<script>
-
-    $(document).ready(function){
-        $("#CId").change(function)(){
-            var countryId = $(this).val();
-            debugger
-            $.ajax({
-                type: "post",
-                url: "/Cascading/GetSateList?CId" + countryId,
-                contentType: "html",
-                success: function (response) {
-                    debugger
-                    $("#SId").empty();
-                    $("#SId").append(response);
-                }
-            })
-        }
-    }
-
-    $(document).ready(function){
-        $("#SId").change(function)(){
-            var stateId = $(this).val();
-            debugger
-            $.ajax({
-                type: "post",
-                url: "/Cascading/GetCityList?SId" + stateId,
-                contentType: "html",
-                success: function (response) {
-                    debugger
-                    $("#Cityid").empty();
-                    $("#Cityid").append(response);
-                }
-            })
-        }
-    }
-
-</script>
