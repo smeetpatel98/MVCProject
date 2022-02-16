@@ -4,10 +4,11 @@
         <thead>
             <tr style="background-color:#005cbf;font-style:inherit;color:aliceblue">
                 <th>
-                    Course Name
+                    CourseDepartment
                 </th>
                 <th>
-                    CourseDepartment
+                    
+                    Course Name
                 </th>
                 <th>
                     Edit
@@ -21,21 +22,23 @@
 
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(Model => item.CourseName)
-                </td>
-                <td>
-                    @Html.DisplayFor(Model => item.CourseDept)
-                </td>
-                <td>
-                   
-                    <a href="@Url.Action("Editdata","SingleEntry", new { item.CourseID, item.CourseName, item.CourseDept})" class="btn btn-success">Edit</a>
-                </td>
-                <td>
-                    <a href="@Url.Action("DeleteCourse", new { item.CourseID})"class="btn btn-danger">Delete</a>
-                </td>
-            </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(Model => item.CourseDept)
+
+        </td>
+            
+        <td>
+            @Html.DisplayFor(Model => item.CourseName)
+        </td>
+        <td>
+
+            <a href="@Url.Action("Index", "SingleEntry", new { item.CourseID, item.CourseName, item.CourseDept})" class="btn btn-success">Edit</a>
+        </td>
+        <td>
+            <a href="@Url.Action("DeleteCourse", new { item.CourseID})" class="btn btn-danger">Delete</a>
+        </td>
+    </tr>
         }
 
     </table>

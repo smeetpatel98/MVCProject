@@ -18,21 +18,42 @@ namespace MVCProject.Controllers
 
         // GET: SingleEntry
         LoginDBEntities db = new LoginDBEntities();
-        public ActionResult Index()
+        public ActionResult Index(int CourseID = 0)
         {
-            
+
             CourseMaintenance courseMaintenance = new CourseMaintenance();
-            var course = (from Course in db.Courses 
-                          select new CourseEntity()     
+            bool isUpdate = true;
+            if (CourseID > 0)
+            {
+                var Test = (from u in this.db.Courses
+                            where u.CourseID == CourseID
+                            select new CourseEntity()
+                            {
+                                CourseID = u.CourseID,
+                                CourseName = u.CourseName,
+                                CourseDept = u.CourseDept,
+
+                            }).FirstOrDefault();
+
+                courseMaintenance.CourseInfo = Test;
+            }
+
+            else
+            {
+                courseMaintenance.CourseInfo = new CourseEntity();
+            }
+            // to print list on partial view
+            var course = (from Course in db.Courses
+                          select new CourseEntity()
                           {
                               //modelname = databasename.parameters
-                              CourseID= Course.CourseID,
+                              CourseID = Course.CourseID,
                               CourseDept = Course.CourseDept,
                               CourseName = Course.CourseName
 
                           }).ToList();
             courseMaintenance.CourseData = course;
-          
+
             return View("Index",courseMaintenance);
                     
         }
@@ -40,20 +61,42 @@ namespace MVCProject.Controllers
         [HttpPost]
         public ActionResult SaveCourse(Course course)
         {
-
-            try
+            if (course.CourseID > 0)
             {
-                Course coursestbl = new Course();
-                coursestbl.CourseDept = course.CourseDept;
-                coursestbl.CourseName = course.CourseName;
-                coursestbl.CourseID = course.CourseID;
-                db.Courses.Add(coursestbl);
-                db.SaveChanges();
+                Models.Course course1 = new Models.Course();
+                bool isUpdate = true;
+                var Test = (from u in this.db.Courses
+                            where u.CourseID == course.CourseID
+                            select u).FirstOrDefault();
+                course1 = Test;
 
+                course1.CourseID = course.CourseID;
+                course1.CourseDept = course.CourseDept;
+                course1.CourseName = course.CourseName;
+                if (isUpdate)
+                {
+                    this.db.Entry(course1).State = System.Data.Entity.EntityState.Modified;
+                }
+
+                var uniqueID = this.db.SaveChanges() > 0 ? course1.CourseID : 0;
             }
-            catch (Exception ex)
+            else
             {
-                throw ex;
+
+                try
+                {
+                    Course coursestbl = new Course();
+                    coursestbl.CourseDept = course.CourseDept;
+                    coursestbl.CourseName = course.CourseName;
+                    coursestbl.CourseID = course.CourseID;
+                    db.Courses.Add(coursestbl);
+                    db.SaveChanges();
+
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
             }
             return RedirectToAction("Index");
         }
@@ -84,28 +127,21 @@ namespace MVCProject.Controllers
         [HttpPost]
         public ActionResult Edit(int CourseID)
         {
-            var data = db.Courses.Where(x => x.CourseID == CourseID).FirstOrDefault();
-            //{
-            //    CourseID = x.CourseID,
-            //    CourseName = x.CourseName,
-            //    CourseDept = x.CourseDept
-
-            //}).SingleOrDefault();
-            return View("Index");  
+            return View(db.Courses.Find(CourseID));
         }
        
-        public ActionResult Editdata(Course edit1)
-        {
-            var data = db.Courses.Where(x => x.CourseID == edit1.CourseID).FirstOrDefault();
-            if (data != null)
-            {
-                data.CourseID = edit1.CourseID;
-                data.CourseName = edit1.CourseName;
-                data.CourseDept = edit1.CourseDept;
-                db.SaveChanges();
-            }
-            return RedirectToAction("Index",data);
-        }
+        //public ActionResult Editdata(Course edit1)
+        //{
+        //    var data = db.Courses.Where(x => x.CourseID == edit1.CourseID).FirstOrDefault();
+        //    if (data != null)
+        //    {
+        //        data.CourseID = edit1.CourseID;
+        //        data.CourseName = edit1.CourseName;
+        //        data.CourseDept = edit1.CourseDept;
+        //        db.SaveChanges();
+        //    }
+        //    return RedirectToAction("Index",data);
+        //}
 
 
 
