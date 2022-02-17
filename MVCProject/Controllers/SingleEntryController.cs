@@ -1,4 +1,5 @@
 ﻿using MVCProject.Models;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -120,6 +121,12 @@ namespace MVCProject.Controllers
         public ActionResult Edit(int CourseID)
         {
             return View(db.Courses.Find(CourseID));
+        }
+        public ActionResult Paging(int page = 1, int pagesize = 4)
+        {
+            List<Course> course = db.Courses.ToList();
+            PagedList<Course> model = new PagedList<Course>(course, page, pagesize);
+            return View(model);
         }
     }
 }

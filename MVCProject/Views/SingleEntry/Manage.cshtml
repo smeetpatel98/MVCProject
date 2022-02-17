@@ -1,13 +1,77 @@
 ﻿@using MVCProject.Controllers
 @model List<MVCProject.Models.CourseEntity>
-    <table style="width: 100%;" id="studenttbl" class="table table-striped dataTable no-footer">
+    @*@model PagedList.IPagedList<MVCProject.Models.Course>*@
+
+    @{ 
+        int intSno = 0;
+    }
+<div class="card shadow" mb-4>
+    <div class="card-header py-3">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="datatable" width="100%" cellpadding="0">
+                    <thead>
+                        <tr>
+                            <th>
+                                Sno
+                            </th>
+                            <th>
+                                CourseDepartment
+                            </th>
+                            <th>
+
+                                Course Name
+                            </th>
+                            <th>
+                                Edit
+                            </th>
+                            <th>
+                                Delete
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            intSno = intSno + 1;
+                            <tr>
+                                <td>
+                                    @intSno
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(Model => item.CourseDept)
+
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(Model => item.CourseName)
+                                </td>
+                                <td>
+
+                                    <a href="@Url.Action("Index", "SingleEntry", new { item.CourseID, item.CourseName, item.CourseDept})" class="btn btn-success">Edit</a>
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("DeleteCourse", new { item.CourseID})" class="btn btn-danger">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+    @*<table style="width: 100%;" id="studenttbl" class="table table-striped dataTable no-footer">
         <thead>
             <tr style="background-color:#005cbf;font-style:inherit;color:aliceblue">
+                <th>
+                    Sno
+                </th>
                 <th>
                     CourseDepartment
                 </th>
                 <th>
-                    
+
                     Course Name
                 </th>
                 <th>
@@ -18,11 +82,15 @@
                 </th>
             </tr>
         </thead>
-        <tbody></tbody>
+        <tbody></tbody>*@
 
-        @foreach (var item in Model)
+        @*@foreach (var item in Model)
         {
+            intSno = intSno + 1;
     <tr>
+        <td>
+            @intSno
+        </td>
         <td>
             @Html.DisplayFor(Model => item.CourseDept)
 
@@ -41,4 +109,4 @@
     </tr>
         }
 
-    </table>
+    </table>*@
