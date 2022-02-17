@@ -42,7 +42,7 @@
         @Html.DisplayFor(Model => item.Gender)
     </td>
     <td>
-         <a href="@Url.Action("Edit", new { item.User_ID})" class="btn btn-success">Edit</a>
+         <a href="@Url.Action("Index" , "MultipleEntry", new { item.User_ID, item.User_Name, item.Email_ID, item.Address, item.Gender,item.DOB})" class="btn btn-success">Edit</a>
     </td>
     <td>
         <a href="@Url.Action("DeleteUser", new { item.User_ID})" class="btn btn-danger">Delete</a>

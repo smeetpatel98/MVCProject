@@ -22,7 +22,7 @@ namespace MVCProject.Controllers
         {
 
             CourseMaintenance courseMaintenance = new CourseMaintenance();
-            bool isUpdate = true;
+            //bool isUpdate = true;
             if (CourseID > 0)
             {
                 var Test = (from u in this.db.Courses
@@ -37,7 +37,6 @@ namespace MVCProject.Controllers
 
                 courseMaintenance.CourseInfo = Test;
             }
-
             else
             {
                 courseMaintenance.CourseInfo = new CourseEntity();
@@ -82,7 +81,6 @@ namespace MVCProject.Controllers
             }
             else
             {
-
                 try
                 {
                     Course coursestbl = new Course();
@@ -100,27 +98,21 @@ namespace MVCProject.Controllers
             }
             return RedirectToAction("Index");
         }
+
         [DataObjectMethod(DataObjectMethodType.Delete)]
 
         public ActionResult DeleteCourse(int CourseID)
         {
             try
             {
-
-                //var course1 = db.Courses.Where(x => x.CourseID == x.CourseID).FirstOrDefault();
                 var delete = db.Courses.Where(x => x.CourseID == CourseID).First();
                       db.Courses.Remove(delete);
-                      db.SaveChanges();
-                     
-                   
-                
+                      db.SaveChanges();           
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-       
-           
             return RedirectToAction("Index");
         }
 
@@ -129,24 +121,5 @@ namespace MVCProject.Controllers
         {
             return View(db.Courses.Find(CourseID));
         }
-       
-        //public ActionResult Editdata(Course edit1)
-        //{
-        //    var data = db.Courses.Where(x => x.CourseID == edit1.CourseID).FirstOrDefault();
-        //    if (data != null)
-        //    {
-        //        data.CourseID = edit1.CourseID;
-        //        data.CourseName = edit1.CourseName;
-        //        data.CourseDept = edit1.CourseDept;
-        //        db.SaveChanges();
-        //    }
-        //    return RedirectToAction("Index",data);
-        //}
-
-
-
-
-
-
     }
 }
