@@ -8,58 +8,54 @@
 
 <div class="card shadow" mb-4>
     <div class="card-header py-3">
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered" id="Coursetbl" width="100%" cellpadding="0">
-                    <thead>
-                        <tr>
-                            <th>
-                                Sno
-                            </th>
-                            <th>
-                                CourseDepartment
-                            </th>
-                            <th>
+        <table class="table table-bordered" id="Coursetbl" width="100%" cellpadding="0">
+            <thead>
+                <tr>
+                    <th>
+                        Sno
+                    </th>
+                    <th>
+                        CourseDepartment
+                    </th>
+                    <th>
 
-                                Course Name
-                            </th>
-                            <th>
-                                Edit
-                            </th>
-                            <th>
-                                Delete
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
-                            intSno = intSno + 1;
-                            <tr>
-                                <td>
-                                    @intSno
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(Model => item.CourseDept)
+                        Course Name
+                    </th>
+                    <th>
+                        Edit
+                    </th>
+                    <th>
+                        Delete
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    intSno = intSno + 1;
+                    <tr>
+                        <td>
+                            @intSno
+                        </td>
+                        <td>
+                            @Html.DisplayFor(Model => item.CourseDept)
 
-                                </td>
+                        </td>
 
-                                <td>
-                                    @Html.DisplayFor(Model => item.CourseName)
-                                </td>
-                                <td>
+                        <td>
+                            @Html.DisplayFor(Model => item.CourseName)
+                        </td>
+                        <td>
 
-                                    <a href="@Url.Action("Index", "SingleEntry", new { item.CourseID, item.CourseName, item.CourseDept})" class="btn btn-success">Edit</a>
-                                </td>
-                                <td>
-                                    <a href="@Url.Action("DeleteCourse", new { item.CourseID})" class="btn btn-danger">Delete</a>
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-        </div>
+                            <a href="@Url.Action("Index", "SingleEntry", new { item.CourseID, item.CourseName, item.CourseDept})" class="btn btn-success">Edit</a>
+                        </td>
+                        <td>
+                            <a href="@Url.Action("DeleteCourse", new { item.CourseID})" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     </div>
 </div>
 
