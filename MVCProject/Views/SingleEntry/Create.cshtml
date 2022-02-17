@@ -1,47 +1,69 @@
 ﻿@model MVCProject.Models.CourseEntity
-     
-    <style>
-        .btn1 {
-            color: #ffffff;
-            border-radius: 10px;
-            padding: 10px 15px;
-            background: linear-gradient(122.33deg, #68bed1 30.62%, #1e94e9 100%);
-            margin-top: 30px;
-            margin-bottom: 10px;
-            font-size: 16px;
-            transition: all 0.3s linear;
+
+<style>
+    .btn1 {
+        color: #ffffff;
+        border-radius: 10px;
+        padding: 10px 15px;
+        background: linear-gradient(122.33deg, #68bed1 30.62%, #1e94e9 100%);
+        margin-top: 30px;
+        margin-bottom: 10px;
+        font-size: 16px;
+        transition: all 0.3s linear;
+    }
+
+        .btn1:hover {
+            transform: translateY(-2px);
         }
 
-            .btn1:hover {
-                transform: translateY(-2px);
-            }
-        .container {
-            display: inline-block;
-            /*border-radius: 15px;
+    .container {
+        display: inline-block;
+        /*border-radius: 15px;
             border: 2px solid black;*/
-            height: 234px;
-            padding-top: 3px;
-            padding-left: 5px;
-        }
-    </style>
-    
-   
-        @using (Html.BeginForm("SaveCourse", "SingleEntry",FormMethod.Post))
-        {
-            <div class="container">
-                <div class="form-group" id="dInformation">
-                    <div class="col-md-12">
-                        @Html.Label("Course-Department", htmlAttributes: new { @class = "control-label" })<span style="color:red">*</span>
+        height: 234px;
+        padding-top: 3px;
+        padding-left: 5px;
+    }
+</style>
+
+
+@*@using (Html.BeginForm("SaveCourse", "SingleEntry", FormMethod.Post))
+{
+    <div class="container">
+        <div class="form-group" id="dInformation">
+            <div class="col-md-12">
+                @Html.Label("Course-Department", htmlAttributes: new { @class = "control-label" })<span style="color:red">*</span>
+                @Html.TextBoxFor(x => x.CourseDept, new { @class = "form-control required", @alt = "Course Dept", @placeholder = "CourseDepartment", autocomplete = "off" })
+                @Html.Label("Course Name", htmlAttributes: new { @class = "control-label" })<span style="color:red">*</span>
+                @Html.TextBoxFor(x => x.CourseName, new { @class = "form-control required", @alt = "Course Name", @placeholder = "CourseName", autocomplete = "off" })
+
+                @Html.HiddenFor(x => x.CourseID)
+            </div>
+            <input class="btn1" type="submit" value="Save">
+            <input class="btn1" type="reset" value="Clear">
+        </div>
+    </div>
+}*@
+@using (Html.BeginForm("SaveCourse", "SingleEntry", FormMethod.Post))
+{
+    <div class="card shadow" mb-4>
+        <div class="card-header py-3">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="datatable" width="100%" cellpadding="0">
+                        @Html.Label("Course-Department", htmlAttributes: new { @class = "control-label" })
+                        <span style="color:red">*</span>
                         @Html.TextBoxFor(x => x.CourseDept, new { @class = "form-control required", @alt = "Course Dept", @placeholder = "CourseDepartment", autocomplete = "off" })
-                        @Html.Label("Course Name", htmlAttributes: new { @class = "control-label"})<span style="color:red">*</span>
-                        @Html.TextBoxFor(x => x.CourseName, new { @class = "form-control required", @alt = "Course Name",@placeholder="CourseName", autocomplete = "off" })
+                        @Html.Label("Course Name", htmlAttributes: new { @class = "control-label" })
+                        <span style="color:red">*</span>
+                        @Html.TextBoxFor(x => x.CourseName, new { @class = "form-control required", @alt = "Course Name", @placeholder = "CourseName", autocomplete = "off" })
 
                         @Html.HiddenFor(x => x.CourseID)
-                    </div>
+                    </table>
                     <input class="btn1" type="submit" value="Save">
                     <input class="btn1" type="reset" value="Clear">
                 </div>
             </div>
-        }
-        
-    
+        </div>
+    </div>
+}
