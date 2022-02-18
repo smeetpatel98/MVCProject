@@ -1,127 +1,124 @@
 ﻿@using MVCProject.Controllers
 @model List<MVCProject.Models.UserEntity>
-    @{ 
-        int intSno = 0;
-    }
+@{
+    int intSno = 0;
+}
 
 <div class="card shadow" mb-4>
     <div class="card-header py-3">
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered" id="datatable" width="100%" cellpadding="0">
-                    <thead>
-                        <tr>
-                            <th>
-                                No.
-                            </th>
-                            <th>
-                                Full Name
-                            </th>
-                            <th>
-                                EmailID
-                            </th>
-                            <th>
-                                Address
-                            </th>
-                            <th>
-                                Gender
-                            </th>
-                            <th>
-                                Edit
-                            </th>
-                            <th>
-                                Delete
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
-                        intSno = intSno + 1;
-                        <tr>
-                            <td>
-                                @intSno
-                            </td>
-                            <td>
-                                @Html.DisplayFor(Model => item.User_Name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(Model => item.Email_ID)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(Model => item.Address)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(Model => item.Gender)
-                            </td>
-                            <td>
-                                <a href="@Url.Action("Index" , "MultipleEntry", new { item.User_ID, item.User_Name, item.Email_ID, item.Address, item.Gender,item.DOB})" class="btn btn-success">Edit</a>
-                            </td>
-                            <td>
-                                <a href="@Url.Action("DeleteUser", new { item.User_ID})" class="btn btn-danger">Delete</a>
-                            </td>
-                        </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-        </div>
+        <table class="table table-bordered" id="Usertbl" width="100%" cellpadding="0">
+            <thead>
+                <tr>
+                    <th>
+                        No.
+                    </th>
+                    <th>
+                        Full Name
+                    </th>
+                    <th>
+                        EmailID
+                    </th>
+                    <th>
+                        Address
+                    </th>
+                    <th>
+                        Gender
+                    </th>
+                    <th>
+                        Edit
+                    </th>
+                    <th>
+                        Delete
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    intSno = intSno + 1;
+                    <tr>
+                        <td>
+                            @intSno
+                        </td>
+                        <td>
+                            @Html.DisplayFor(Model => item.User_Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(Model => item.Email_ID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(Model => item.Address)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(Model => item.Gender)
+                        </td>
+                        <td>
+                            <a href="@Url.Action("Index" , "MultipleEntry", new { item.User_ID, item.User_Name, item.Email_ID, item.Address, item.Gender,item.DOB})" class="btn btn-success">Edit</a>
+                        </td>
+                        <td>
+                            <a href="@Url.Action("DeleteUser", new { item.User_ID})" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     </div>
 </div>
+
 @*<table style="width: 100%;" id="studenttbl" class="table table-striped dataTable no-footer">
-<thead>
-    <tr style="background-color:#005cbf;font-style:inherit;color:aliceblue">
-        <th>
-            No.
-        </th>
-        <th>
-            Full Name
-        </th>
-        <th>
-            EmailID
-        </th>
-        <th>
-            Address
-        </th>
-        <th>
-            Gender
-        </th>
-        <th>
-            Edit
-        </th>
-        <th>
-            Delete
-        </th>
+    <thead>
+        <tr style="background-color:#005cbf;font-style:inherit;color:aliceblue">
+            <th>
+                No.
+            </th>
+            <th>
+                Full Name
+            </th>
+            <th>
+                EmailID
+            </th>
+            <th>
+                Address
+            </th>
+            <th>
+                Gender
+            </th>
+            <th>
+                Edit
+            </th>
+            <th>
+                Delete
+            </th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+
+    @foreach (var item in Model)
+    {
+        intSno = intSno + 1;
+    <tr>
+        <td>
+            @intSno
+        </td>
+        <td>
+            @Html.DisplayFor(Model => item.User_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(Model => item.Email_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(Model => item.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(Model => item.Gender)
+        </td>
+        <td>
+            <a href="@Url.Action("Index" , "MultipleEntry", new { item.User_ID, item.User_Name, item.Email_ID, item.Address, item.Gender,item.DOB})" class="btn btn-success">Edit</a>
+        </td>
+        <td>
+            <a href="@Url.Action("DeleteUser", new { item.User_ID})" class="btn btn-danger">Delete</a>
+        </td>
     </tr>
-</thead>
-<tbody></tbody>
+    }
 
-@foreach (var item in Model)
-{
-    intSno = intSno + 1;
-<tr>
-    <td>
-        @intSno
-    </td>
-    <td>
-        @Html.DisplayFor(Model => item.User_Name)
-    </td>
-    <td>
-        @Html.DisplayFor(Model => item.Email_ID)
-    </td>
-    <td>
-        @Html.DisplayFor(Model => item.Address)
-    </td>
-    <td>
-        @Html.DisplayFor(Model => item.Gender)
-    </td>
-    <td>
-        <a href="@Url.Action("Index" , "MultipleEntry", new { item.User_ID, item.User_Name, item.Email_ID, item.Address, item.Gender,item.DOB})" class="btn btn-success">Edit</a>
-    </td>
-    <td>
-        <a href="@Url.Action("DeleteUser", new { item.User_ID})" class="btn btn-danger">Delete</a>
-    </td>
-</tr>
-}
-
-    </table>*@
+        </table>*@

@@ -58,30 +58,11 @@
                         <div class="col-md-6">
                             @Html.Label("Date of Birth", htmlAttributes: new { @class = "control-label" })<span style="color:red">*</span>
                             <div id="datepicker" class="input-group date" data-date-format="dd/mm/yyyy">
-                                @Html.TextBoxFor(x => x.DOB, null, new { @class = "form-control required", @alt = "Date of Birth", autocomplete = "off" })
+                                @Html.EditorFor(x => x.DOB, null, new { @class = "form-control required", @alt = "Date of Birth", autocomplete = "off" })
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-
-                                @*@if (Model == null)
-                    {
-                        @Html.TextBoxFor(x => x.DOB, null, new { @class = "form-control required", @alt = "Date of Birth", autocomplete = "off", @readonly = "readonly" })
-                    }
-                    else
-                    {
-                        if (Model.DOB == null)
-                        {
-                            @Html.TextBoxFor(x => x.DOB, new { @class = "form-control", autocomplete = "off", @readonly = "readonly", @alt = "Date of Birth" })
-                        }
-                        else
-                        {
-                            @Html.TextBoxFor(x => x.DOB, Model.DOB.Value.ToString("dd/MM/yyyy"), new { @class = "form-control required", autocomplete = "off", @readonly = "readonly", @alt = "Date of Birth" })
-                        }
-                    }*@
-
-
                             </div>
                         </div>
-
-                    </table>
+</table>
                     <div>
                         <input class="btn1" type="submit" value="Save">
                         <input class="btn1" type="reset" value="Reset">
